@@ -1,0 +1,134 @@
+{% load i18n %}
+{% load static from staticfiles %}
+    <!-- Header Top Start -->
+    <header id="header-top_3">
+        <div class="container">
+            <div class="row">
+                <div class="header_set">
+                	<div class="col-md-2 col-sm-2"><a class="" href="{% url 'autotriage:home' %}"><img src="{% static 'autotriage/images/logo_white.png' %}" class="logo logo-display" alt=""></a></div>
+                    <div class="col-md-10 col-sm-10 col-xs-12 text-right">
+                        <div class="get-tuch text-left"><i class="icon-telephone114"></i>
+                            <ul>
+                                <li>
+                                    <h4>+91 9902057896</h4>
+                                </li>
+                                <li>
+                                    <p class="p_14">get-value@trioitservices.in</p>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+        <!-- Header Top End -->
+
+        <!-- Navbar Start -->
+        <nav class="navbar navbar-default navbar-fixed navbar-transparent navbar-sticky dark bootsnav">
+
+            <div class="container">
+                <div class="" id="search">
+                    <button type="button" class="close">×</button>
+                    <form>
+                        <input type="search" value="" placeholder="Search on Site...">
+                        <span class="searc_button"><i class="icon-icons185"></i></span>
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </form>
+                </div>
+                <!-- Start Header Navigation -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <a class="navbar-brand" href="{% url 'autotriage:home' %}">
+
+                       <!-- <img src="images/logo_white.png" class="logo logo-display" alt="">-->
+                        <img src="{% static 'autotriage/images/logo.png' %}" class="logo logo-scrolled" alt="">
+
+                    </a>
+                </div>
+                <!-- End Header Navigation -->
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse nav_bor_bot" id="navbar-menu">
+                    <ul class="nav navbar-nav navbar-left" data-in="fadeInDown" data-out="fadeOutUp">
+                        
+                            <li class="cool-link"><a href="{% url 'autotriage:dashboard' %}">Home</a></li>
+                            
+                            <li class="dropdown cool-link"><a href="" class="dropdown-toggle" data-toggle="dropdown">Management</a>
+                            	<ul class="dropdown-menu">
+                                    <li><a href="{% url 'autotriage:dashboard' %}"><span class="nav-text">{% trans "Dashboard" %}</span></a></li>
+                                    <li>
+                                        <a href="{% url 'autotriage:list' %}"><span class="nav-text">{% trans "Tickets" %}</span></a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'autotriage:report_index' %}"><span class="nav-text">{% trans "Stats" %}</span></a>
+                                    </li>
+                                    {% if helpdesk_settings.HELPDESK_KB_ENABLED %}
+                                        <li>
+                                            <a href="{% url 'autotriage:kb_index' %}"><i class="fa fa-database fa-fw"></i> <span class="nav-text">{% trans "Knowledgebase" %}</span></a>
+                                        </li>
+
+                                    {% endif %}
+
+                                </ul>
+                            </li>
+                            {% if user.is_authenticated %}
+                                <li class="dropdown cool-link"><a href="managed-services.html" class="dropdown-toggle" data-toggle="dropdown">Tickets</a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="{% url 'autotriage:submit' %}">Submit a Ticket</a></li>
+                                        <li><a href="{% url 'autotriage:list' %}">View Ticket</a></li>
+                                    </ul>
+                                </li>
+                            {% endif %}
+                            <li class="dropdown cool-link"><a href="" class="dropdown-toggle" data-toggle="dropdown">Profile</a>
+                            	<ul class="dropdown-menu">
+                                    <li>
+                                        <a href="{% url 'autotriage:user_settings' %}"><i class="fa fa-gear fa-fw"></i> {% trans "User Settings" %}</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'autotriage:rss_index' %}"><i class="fa fa-rss-square fa-fw"></i> {% trans "RSS Feeds" %}</a>
+                                    </li>
+                                    {% if helpdesk_settings.HELPDESK_SHOW_CHANGE_PASSWORD and user.has_usable_password %}
+                                        <li>
+                                            <a href="{% url 'auth_password_change' %}"><i class="fa fa-user-secret fa-fw"></i> {% trans "Change password" %}</a>
+                                        </li>
+                                    {% endif %}
+                                    {% if user.is_superuser %}
+                                        <li>
+                                            <a href="{% url 'autotriage:system_settings' %}"><i class="fa fa-gears fa-fw"></i> {% trans "System Settings" %}</a>
+                                        </li>
+                                        <li>
+                                            <a href="/admin"><i class="fa fa-gears fa-fw"></i> {% trans "Admin Settings" %}</a>
+                                        </li>
+                                    {% endif %}
+
+                                </ul>
+                            </li>
+                            {% if not request.path == '/autotriage/login/' or user.is_authenticated %}
+                                <li class="cool-link">{% if user.is_authenticated %}<a href='{% url 'autotriage:logout' %}'>{% trans "Logout" %}</a></li>
+                            {% else %}
+                                <li class="cool-link"><a href='{% url 'autotriage:login' %}?next={% if next %}{{ next|escape }}{% else %}{% url 'autotriage:home' %}{% endif %}'>{% trans "Log In" %}</a>{% endif %}</li>
+                            {% endif %}
+                            
+                        </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+
+            </div>
+        </nav>
+
+    </header>
+    <!-- Navbar End -->
+     <!-- Page Banner Start -->
+    <div id="page_banner" class="m-b-60">
+        <div class="container">
+             <div class="page-header text-center"></div>
+        </div>
+    </div>
+    <!-- Page Banner End -->
+
+    
