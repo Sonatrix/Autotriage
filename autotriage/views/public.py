@@ -27,7 +27,7 @@ def homepage(request):
             (request.user.is_authenticated() and
              helpdesk_settings.HELPDESK_ALLOW_NON_STAFF_TICKET_UPDATE):
         try:
-            if request.user.usersettings_helpdesk.settings.get('login_view_ticketlist', False):
+            if request.user.usersettings_autotriage.settings.get('login_view_ticketlist', False):
                 return HttpResponseRedirect(reverse('autotriage:list'))
             else:
                 return HttpResponseRedirect(reverse('autotriage:dashboard'))
